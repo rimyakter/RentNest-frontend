@@ -1,20 +1,10 @@
-export type IRole = "ADMIN" | "OWNER" | "RENTER";
+export type IRole = "ADMIN" | "LANDLORD" | "TENANT";
 
 export type IUser = {
   id: string;
   name: string;
   email: string;
   role: IRole;
-};
-
-export type ICar = {
-  id: string;
-  brand: string;
-  model: string;
-  dailyRate: number;
-  location: string;
-  isAvailable: boolean;
-  ownerId: string;
 };
 
 export type ITokenPayload = {

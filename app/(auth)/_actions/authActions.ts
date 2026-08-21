@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { api } from "@/lib/api";
 import { ILoginState, IUser } from "@/lib/type";
+import { logout } from "@/service/logout";
 
 type AuthData = {
   accessToken: string;
@@ -27,6 +28,7 @@ const setAuthCookies = async ({ accessToken, refreshToken }: AuthData) => {
   });
 };
 
+//Login Function
 export const loginAction = async (
   prevState: ILoginState,
   formData: FormData,
@@ -49,6 +51,7 @@ export const loginAction = async (
   redirect("/dashboard");
 };
 
+//Register Function
 export const registerAction = async (
   prevState: ILoginState,
   formData: FormData,
@@ -68,6 +71,8 @@ export const registerAction = async (
     }),
   });
 
+  console.log("REGISTER API RESULT:", result);
+
   // Email already taken, weak password, etc.
   if (!result.ok) {
     return { success: false, message: result.message };
@@ -85,11 +90,14 @@ export const registerAction = async (
   }
 
   await setAuthCookies(login.data);
+  console.log("LOGIN SUCCESS");
+  console.log("redirecting to dashboard");
 
   redirect("/dashboard");
 };
 
-// export const logoutAction = async () => {
-//   await logout();
-//   redirect("/login");
-// };
+//Logout Function
+export const logoutAction = async () => {
+  await logout();
+  redirect("/login");
+};

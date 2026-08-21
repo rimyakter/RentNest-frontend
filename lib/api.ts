@@ -12,7 +12,9 @@ type ApiEnvelope<T> = {
 };
 
 /** Either the data we asked for, or the reason we didn't get it. */
-export type ApiResult<T> = { ok: true; data: T } | { ok: false; message: string };
+export type ApiResult<T> =
+  | { ok: true; data: T }
+  | { ok: false; message: string };
 
 type ApiOptions = RequestInit & {
   /** Attach the logged-in user's access token as a Bearer header */
@@ -23,7 +25,10 @@ type ApiOptions = RequestInit & {
  * One place where every backend call goes through, so each service file
  * stays a two-liner and nothing re-implements URL building or error handling.
  */
-export async function api<T>(path: string, options: ApiOptions = {}): Promise<ApiResult<T>> {
+export async function api<T>(
+  path: string,
+  options: ApiOptions = {},
+): Promise<ApiResult<T>> {
   const { auth, headers, ...init } = options;
 
   const authHeader: HeadersInit = {};
@@ -37,9 +42,13 @@ export async function api<T>(path: string, options: ApiOptions = {}): Promise<Ap
   }
 
   try {
-    const res = await fetch(`${process.env.BACKEND_API_URL}${path}`, {
+    const res = await fetch(`${process.env.API_URL}${path}`, {
       ...init,
-      headers: { "Content-Type": "application/json", ...authHeader, ...headers },
+      headers: {
+        "Content-Type": "application/json",
+        ...authHeader,
+        ...headers,
+      },
     });
 
     const body: ApiEnvelope<T> = await res.json();
