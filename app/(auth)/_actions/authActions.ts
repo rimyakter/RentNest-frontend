@@ -89,7 +89,7 @@ export const registerAction = async (
   redirect("/dashboard");
 };
 
-export const logoutAction = async () => {
-  await logout();
-  redirect("/login");
-};
+// export const logoutAction = async () => {
+//   await logout();
+//   redirect("/login");
+// };
