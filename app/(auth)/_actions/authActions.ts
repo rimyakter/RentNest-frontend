@@ -48,7 +48,10 @@ export const loginAction = async (
 
   await setAuthCookies(result.data);
 
-  redirect("/dashboard");
+   return {
+    success: true,
+    message: "Login successful!",
+  };
 };
 
 //Register Function
@@ -71,7 +74,7 @@ export const registerAction = async (
     }),
   });
 
-  console.log("REGISTER API RESULT:", result);
+
 
   // Email already taken, weak password, etc.
   if (!result.ok) {
@@ -90,10 +93,10 @@ export const registerAction = async (
   }
 
   await setAuthCookies(login.data);
-  console.log("LOGIN SUCCESS");
-  console.log("redirecting to dashboard");
-
-  redirect("/dashboard");
+  return {
+  success: true,
+  message: "Account created successfully!",
+};
 };
 
 //Logout Function

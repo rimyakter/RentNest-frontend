@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
+
 
 const ROLES = [
   { value: "TENANT", label: "Rent Properties" },
@@ -15,16 +17,27 @@ const ROLES = [
 ];
 
 const RegisterForm = () => {
+  const router = useRouter();
   const [state, action, pending] = useActionState(registerAction, {
     success: false,
     message: "",
   });
 
   useEffect(() => {
-    if (state.message && !state.success) {
-      toast.error(state.message);
+    if (!state.message) return;
+
+    if (state.success) {
+      toast.success(state.message || "Account created successfully!");
+
+      const timer = setTimeout(() => {
+        router.push("/dashboard");
+      }, 500);
+
+      return () => clearTimeout(timer);
     }
-  }, [state]);
+
+    toast.error(state.message);
+  }, [state.message, state.success, router]);
 
   return (
     <Card className="p-6">
