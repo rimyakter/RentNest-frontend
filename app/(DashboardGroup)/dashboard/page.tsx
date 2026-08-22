@@ -1,14 +1,14 @@
 import { Mail, Shield, Fingerprint } from "lucide-react";
 import { getMe } from "@/service/getMe";
-import { getMyBookings } from "@/service/getBookings";
-import { BookingList } from "@/components/shared/booking-list";
+// import { getMyBookings } from "@/service/getBookings";
+// import { BookingList } from "@/components/shared/booking-list";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default async function DashboardPage() {
   const user = await getMe();
 
-  const bookings = user?.role === "TENANT" ? await getMyBookings() : [];
+  //   const bookings = user?.role === "TENANT" ? await getMyBookings() : [];
 
   const rows = [
     { icon: Mail, label: "Email", value: user?.email },
@@ -30,8 +30,14 @@ export default async function DashboardPage() {
               {user?.name?.[0]?.toUpperCase()}
             </div>
             <div className="min-w-0 space-y-1">
-              <p className="truncate text-lg leading-snug font-medium">{user?.name}</p>
-              <Badge variant="secondary" className="bg-primary/10 text-primary border-0">{user?.role}</Badge>
+              <p className="truncate text-lg leading-snug font-medium">
+                {user?.name}
+              </p>
+              <Badge
+                variant="secondary"
+                className="bg-primary/10 text-primary border-0">
+                {user?.role}
+              </Badge>
             </div>
           </div>
         </CardHeader>
@@ -39,7 +45,9 @@ export default async function DashboardPage() {
         <CardContent>
           <dl className="divide-y">
             {rows.map(({ icon: Icon, label, value }) => (
-              <div key={label} className="flex items-center justify-between gap-4 py-3">
+              <div
+                key={label}
+                className="flex items-center justify-between gap-4 py-3">
                 <dt className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Icon className="size-4" />
                   {label}
@@ -57,7 +65,32 @@ export default async function DashboardPage() {
             Your bookings
           </h2>
           <div className="mt-4">
-            <BookingList bookings={bookings} payable />
+            {/* <BookingList bookings={bookings} payable /> */}
+            <p>Hello Tenant!</p>
+          </div>
+        </section>
+      )}
+      
+      {user?.role === "LANDLORD" && (
+        <section className="mt-10">
+          <h2 className="rise text-sm font-medium text-muted-foreground" style={{ animationDelay: "120ms" }}>
+            Your bookings
+          </h2>
+          <div className="mt-4">
+            {/* <BookingList bookings={bookings} payable /> */}
+            <p>Hello Landlord!</p>
+          </div>
+        </section>
+      )}
+      
+      {user?.role === "ADMIN" && (
+        <section className="mt-10">
+          <h2 className="rise text-sm font-medium text-muted-foreground" style={{ animationDelay: "120ms" }}>
+            Your bookings
+          </h2>
+          <div className="mt-4">
+            {/* <BookingList bookings={bookings} payable /> */}
+            <p>Hello Admin!</p>
           </div>
         </section>
       )}
