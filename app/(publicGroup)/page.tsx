@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getProperties } from "@/service/getProperties";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import Image from "next/image";
 
 export default async function Home() {
   const properties = await getProperties();
@@ -46,10 +47,13 @@ export default async function Home() {
                 <CardContent className="space-y-4 p-0">
                   <div className="relative flex aspect-16/10 items-center justify-center overflow-hidden bg-muted">
                     {property.image ? (
-                      <img
+                      <Image
+                        width={400}
+                        height={250}
                         src={property.image}
                         alt={property.title}
-                        className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover/property:scale-105"
+                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+  className="object-cover"
                       />
                     ) : (
                       <HomeIcon className="size-10 text-muted-foreground/40" />
