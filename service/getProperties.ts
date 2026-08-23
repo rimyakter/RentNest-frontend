@@ -9,5 +9,5 @@ export const getProperties = async (): Promise<IProperty[]> => {
     cache: "no-store",
   });
 
-  return result.ok ? result.data.properties : [];
+  return result.ok ? result.data : [];
 };
