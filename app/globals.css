@@ -50,71 +50,93 @@
 
 :root {
   --background: oklch(1 0 0);
-  --foreground: oklch(0.153 0.006 107.1);
+  --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.153 0.006 107.1);
+  --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.153 0.006 107.1);
-  --primary: oklch(0.511 0.096 186.391);
-  --primary-foreground: oklch(0.984 0.014 180.72);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.508 0.118 165.612);
+  --primary-foreground: oklch(0.979 0.021 166.113);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.966 0.005 106.5);
-  --muted-foreground: oklch(0.58 0.031 107.3);
-  --accent: oklch(0.966 0.005 106.5);
-  --accent-foreground: oklch(0.228 0.013 107.4);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.93 0.007 106.5);
-  --input: oklch(0.93 0.007 106.5);
-  --ring: oklch(0.737 0.021 106.9);
-  --chart-1: oklch(0.88 0.011 106.6);
-  --chart-2: oklch(0.58 0.031 107.3);
-  --chart-3: oklch(0.466 0.025 107.3);
-  --chart-4: oklch(0.394 0.023 107.4);
-  --chart-5: oklch(0.286 0.016 107.4);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.705 0.015 286.067);
+  --chart-1: oklch(0.871 0.006 286.286);
+  --chart-2: oklch(0.552 0.016 285.938);
+  --chart-3: oklch(0.442 0.017 285.786);
+  --chart-4: oklch(0.37 0.013 285.805);
+  --chart-5: oklch(0.274 0.006 286.033);
   --radius: 0.625rem;
-  --sidebar: oklch(0.988 0.003 106.5);
-  --sidebar-foreground: oklch(0.153 0.006 107.1);
-  --sidebar-primary: oklch(0.6 0.118 184.704);
-  --sidebar-primary-foreground: oklch(0.984 0.014 180.72);
-  --sidebar-accent: oklch(0.966 0.005 106.5);
-  --sidebar-accent-foreground: oklch(0.228 0.013 107.4);
-  --sidebar-border: oklch(0.93 0.007 106.5);
-  --sidebar-ring: oklch(0.737 0.021 106.9);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.141 0.005 285.823);
+  --sidebar-primary: oklch(0.596 0.145 163.225);
+  --sidebar-primary-foreground: oklch(0.979 0.021 166.113);
+  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
+  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-ring: oklch(0.705 0.015 286.067);
 }
 
 .dark {
-  --background: oklch(0.153 0.006 107.1);
-  --foreground: oklch(0.988 0.003 106.5);
-  --card: oklch(0.228 0.013 107.4);
-  --card-foreground: oklch(0.988 0.003 106.5);
-  --popover: oklch(0.228 0.013 107.4);
-  --popover-foreground: oklch(0.988 0.003 106.5);
-  --primary: oklch(0.437 0.078 188.216);
-  --primary-foreground: oklch(0.984 0.014 180.72);
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.432 0.095 166.913);
+  --primary-foreground: oklch(0.979 0.021 166.113);
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.286 0.016 107.4);
-  --muted-foreground: oklch(0.737 0.021 106.9);
-  --accent: oklch(0.286 0.016 107.4);
-  --accent-foreground: oklch(0.988 0.003 106.5);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.58 0.031 107.3);
-  --chart-1: oklch(0.88 0.011 106.6);
-  --chart-2: oklch(0.58 0.031 107.3);
-  --chart-3: oklch(0.466 0.025 107.3);
-  --chart-4: oklch(0.394 0.023 107.4);
-  --chart-5: oklch(0.286 0.016 107.4);
-  --sidebar: oklch(0.228 0.013 107.4);
-  --sidebar-foreground: oklch(0.988 0.003 106.5);
-  --sidebar-primary: oklch(0.704 0.14 182.503);
-  --sidebar-primary-foreground: oklch(0.277 0.046 192.524);
-  --sidebar-accent: oklch(0.286 0.016 107.4);
-  --sidebar-accent-foreground: oklch(0.988 0.003 106.5);
+  --ring: oklch(0.552 0.016 285.938);
+  --chart-1: oklch(0.871 0.006 286.286);
+  --chart-2: oklch(0.552 0.016 285.938);
+  --chart-3: oklch(0.442 0.017 285.786);
+  --chart-4: oklch(0.37 0.013 285.805);
+  --chart-5: oklch(0.274 0.006 286.033);
+  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.696 0.17 162.48);
+  --sidebar-primary-foreground: oklch(0.262 0.051 172.552);
+  --sidebar-accent: oklch(0.274 0.006 286.033);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.58 0.031 107.3);
+  --sidebar-ring: oklch(0.552 0.016 285.938);
+}
+
+@theme {
+  /* Stronger than the built-in CSS easings, which are too weak to feel intentional */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Shadow tokens — layered for depth without heaviness */
+  --shadow-color: 220 3% 15%;
+  --shadow-xs: 0 1px 2px hsl(var(--shadow-color) / 5%);
+  --shadow-sm:
+    0 1px 3px hsl(var(--shadow-color) / 8%),
+    0 1px 2px hsl(var(--shadow-color) / 4%);
+  --shadow-md:
+    0 4px 6px -1px hsl(var(--shadow-color) / 8%),
+    0 2px 4px -2px hsl(var(--shadow-color) / 4%);
+  --shadow-lg:
+    0 10px 15px -3px hsl(var(--shadow-color) / 8%),
+    0 4px 6px -4px hsl(var(--shadow-color) / 3%);
+  --shadow-xl:
+    0 20px 25px -5px hsl(var(--shadow-color) / 10%),
+    0 8px 10px -6px hsl(var(--shadow-color) / 4%);
 }
 
 @layer base {
@@ -126,5 +148,132 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+@layer components {
+  /* Instant feedback on press, so the UI feels like it heard you.
+     Uses the standalone `scale` property, not `transform`, because shadcn's
+     Button already sets a transform on :active - one would silently clobber
+     the other. These compose instead. */
+  .press {
+    transition: scale 160ms var(--ease-out-strong);
+  }
+  .press:active {
+    scale: 0.97;
+  }
+
+  /* Hover lift, gated to real pointers. On a touch screen a tap counts as a
+     hover and the raised state sticks around after the finger leaves. */
+  .lift {
+    transition:
+      box-shadow 200ms var(--ease-out-strong),
+      transform 200ms var(--ease-out-strong);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .lift:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+  }
+
+  /* Entrance for lists. Starts at 0.98 (never 0) so nothing appears from nothing.
+     Named "rise", not "enter" - tw-animate-css already owns @keyframes enter and
+     a same-name collision silently leaves elements stuck at opacity 0. */
+  .rise {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+    animation: rise 320ms var(--ease-out-strong) forwards;
+  }
+
+  @keyframes rise {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Gradient background mesh for hero sections */
+  .hero-mesh {
+    background:
+      radial-gradient(
+        ellipse 80% 50% at 20% 40%,
+        oklch(0.508 0.118 165.612 / 8%),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 60% 60% at 80% 20%,
+        oklch(0.508 0.118 165.612 / 5%),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 50% 80% at 50% 80%,
+        oklch(0.552 0.016 285.938 / 4%),
+        transparent
+      );
+  }
+
+  .dark .hero-mesh {
+    background:
+      radial-gradient(
+        ellipse 80% 50% at 20% 40%,
+        oklch(0.432 0.095 166.913 / 12%),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 60% 60% at 80% 20%,
+        oklch(0.432 0.095 166.913 / 8%),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 50% 80% at 50% 80%,
+        oklch(0.274 0.006 286.033 / 6%),
+        transparent
+      );
+  }
+
+  /* Image card overlay gradient — bottom-up fade for text legibility */
+  .img-overlay {
+    position: relative;
+  }
+  .img-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(to top, oklch(0 0 0 / 40%) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Subtle grain texture for depth */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+}
+
+/* Reduced motion means gentler, not zero: keep the fade, drop the movement */
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    transform: none;
+    animation: fade-in 200ms ease forwards;
+    animation-delay: 0ms !important;
+  }
+  .press:active {
+    scale: 1;
+  }
+  .lift:hover {
+    transform: none;
+  }
+  @keyframes fade-in {
+    to {
+      opacity: 1;
+    }
   }
 }
