@@ -30,8 +30,8 @@ export async function Navbar() {
           {user?.role === "LANDLORD" && <NavLink href="/owner">My fleet</NavLink>}
           {user?.role === "ADMIN" && (
             <>
-              <NavLink href="/admin">Admin</NavLink>
               <NavLink href="/admin/users">Users</NavLink>
+              <NavLink href="/admin/categories">Categories</NavLink>
             </>
           )}
         </div>

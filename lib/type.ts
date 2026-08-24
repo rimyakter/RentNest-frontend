@@ -35,15 +35,6 @@ export type ILoginState = {
   message: string;
 };
 
-export type ICategory = {
-  id: string;
-  name: string;
-  description: string | null;
-  icon: string | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
 export type IProperty = {
   id: string;
   title: string;
@@ -116,3 +107,15 @@ export type IFormState = {
   success: boolean;
   message: string;
 };
+export interface ICategory {
+  id: string;
+  name: string;
+  description?: string | null;
+  icon?: string | null;
+  createdAt: string;
+  updatedAt: string;
+
+  _count?: {
+    properties: number;
+  };
+}
