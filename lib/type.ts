@@ -1,16 +1,10 @@
 export type IRole = "ADMIN" | "LANDLORD" | "TENANT";
 
-export type IPaymentMethod =
-  | "CARD"
-  | "MOBILE_BANKING"
-  | "BANK_TRANSFER";
+export type IPaymentMethod = "CARD" | "MOBILE_BANKING" | "BANK_TRANSFER";
 
 export type IPaymentProvider = "STRIPE" | "SSLCOMMERZ";
 
-export type IPaymentStatus =
-  | "PENDING"
-  | "COMPLETED"
-  | "FAILED";
+export type IPaymentStatus = "PENDING" | "COMPLETED" | "FAILED";
 
 export type IRentalRequestStatus =
   | "PENDING"
@@ -116,4 +110,9 @@ export type IReview = {
 
   property?: IProperty;
   renter?: IUser;
+};
+
+export type IFormState = {
+  success: boolean;
+  message: string;
 };

@@ -1,13 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MapPin, ArrowLeft, BedDouble, Bath, User, Star } from "lucide-react";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 import { getProperty } from "@/service/getProperty";
 import { getMe } from "@/service/getMe";
-import Image from "next/image";
+import RentalRequestForm from "../../_components/RentalRequestForm";
 
 export default async function PropertyPage({
   params,
@@ -35,18 +37,19 @@ export default async function PropertyPage({
 
       {/* Property overview */}
       <div className="grid gap-8 md:grid-cols-2">
+        {/* Property image */}
         <div className="rise relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
-          <div className="rise relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
-            <Image
-              src={property.image}
-              alt={property.title}
-              fill
-              priority
-              className="object-cover"
-            />
-          </div>
+          <Image
+            src={property.image}
+            alt={property.title}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+          />
         </div>
 
+        {/* Property information */}
         <div className="rise space-y-5" style={{ animationDelay: "60ms" }}>
           <div className="space-y-3">
             <div className="flex items-start justify-between gap-4">
@@ -84,6 +87,7 @@ export default async function PropertyPage({
           <div className="flex flex-wrap gap-3">
             <div className="flex items-center gap-2 rounded-lg border px-4 py-3">
               <BedDouble className="size-5 text-muted-foreground" />
+
               <div>
                 <p className="text-sm font-semibold">{property.bedrooms}</p>
                 <p className="text-xs text-muted-foreground">Bedrooms</p>
@@ -92,6 +96,7 @@ export default async function PropertyPage({
 
             <div className="flex items-center gap-2 rounded-lg border px-4 py-3">
               <Bath className="size-5 text-muted-foreground" />
+
               <div>
                 <p className="text-sm font-semibold">{property.bathrooms}</p>
                 <p className="text-xs text-muted-foreground">Bathrooms</p>
@@ -193,8 +198,7 @@ export default async function PropertyPage({
               This property is currently unavailable.
             </p>
           ) : (
-            // <RentalRequestForm property={property} />
-            <p>Rental Request Form</p>
+            <RentalRequestForm property={property} />
           )}
         </CardContent>
       </Card>
