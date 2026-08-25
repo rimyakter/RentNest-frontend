@@ -3,8 +3,8 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import type { ICategory } from "@/lib/type";
-import { editCategory } from "../_actions/editCategoryActions";
 import { addCategory } from "../_actions/addCategoryActions";
+import { editCategory } from "../_actions/editCategoryActions";
 
 interface CategoryFormProps {
   category?: ICategory;

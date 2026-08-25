@@ -27,11 +27,15 @@ export async function Navbar() {
           {user?.role === "TENANT" && (
             <NavLink href="/dashboard/payments">Payments</NavLink>
           )}
-          {user?.role === "LANDLORD" && <NavLink href="/owner">My fleet</NavLink>}
+          {user?.role === "TENANT" && <NavLink href="/users/me">Profile</NavLink>}
+          {user?.role === "LANDLORD" && (
+            <NavLink href="/landlord/properties">Properties</NavLink>
+          )}
           {user?.role === "ADMIN" && (
             <>
               <NavLink href="/admin/users">Users</NavLink>
               <NavLink href="/admin/categories">Categories</NavLink>
+              
             </>
           )}
         </div>

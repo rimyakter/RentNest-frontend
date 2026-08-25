@@ -35,7 +35,7 @@ export type ILoginState = {
   message: string;
 };
 
-export type IProperty = {
+export interface IProperty {
   id: string;
   title: string;
   description: string;
@@ -50,12 +50,9 @@ export type IProperty = {
   categoryId: string;
   createdAt: string;
   updatedAt: string;
-
-  owner?: IUser;
   category?: ICategory;
-  requests?: IRentalRequest[];
-  reviews?: IReview[];
-};
+  owner?: IUser;
+}
 
 export type IRentalRequest = {
   id: string;

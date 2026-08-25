@@ -1,4 +1,4 @@
-// app/properties/_components/PropertyTable.tsx
+// app/properties/_components/PropertyTable.tsx (updated with onPropertyChange)
 "use client";
 
 import { useState, useTransition } from "react";
@@ -31,19 +31,20 @@ export default function PropertyTable({
     if (!confirmed) return;
 
     startTransition(async () => {
-      const success = await removeProperty(id);
-      if (success) {
-        onPropertyChange?.();
-      } else {
+      const result = await removeProperty(id);
+      if (!result) {
         console.error("Failed to delete property");
+        return;
       }
+      // Refresh data
+      onPropertyChange?.();
     });
   };
 
   if (!properties.length) {
     return (
       <div className="rounded-lg border p-8 text-center text-muted-foreground">
-        No properties found. Create your first property!
+        No properties found.
       </div>
     );
   }

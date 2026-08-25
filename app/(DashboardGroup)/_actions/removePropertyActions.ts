@@ -2,7 +2,6 @@
 "use server";
 
 import { api } from "@/lib/api";
-import { revalidatePath } from "next/cache";
 
 export const removeProperty = async (id: string): Promise<boolean> => {
   const result = await api(`/properties/${id}`, {
@@ -10,11 +9,5 @@ export const removeProperty = async (id: string): Promise<boolean> => {
     auth: true,
   });
 
-  if (result.ok) {
-    // Revalidate the properties page to reflect changes
-    revalidatePath("/properties");
-    return true;
-  }
-
-  return false;
+  return result.ok;
 };
