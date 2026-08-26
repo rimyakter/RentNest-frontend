@@ -1,177 +1,88 @@
-// app/properties/_components/PropertyTable.tsx
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// app/(DashboardGroup)/_components/CategoryTable.tsx
 "use client";
 
-import { useState, useTransition } from "react";
-import type { ICategory, IProperty } from "@/lib/type";
-import { removeProperty } from "../_actions/removePropertyActions";
-import PropertyForm from "./PropertyForm";
-import Image from "next/image";
+import { useState } from "react";
+import type { ICategory } from "@/lib/type";
+import { Pencil, Trash2 } from "lucide-react";
+import CategoryForm from "./CategoryForm";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
 
-interface PropertyTableProps {
-  properties: IProperty[];
+interface CategoryTableProps {
   categories: ICategory[];
-  onPropertyChange?: () => void;
+  properties?: any[];
+  onPropertyChange?: (categoryId: string) => void;
 }
 
-export default function PropertyTable({
-  properties,
+export default function CategoryTable({
   categories,
-  onPropertyChange,
-}: PropertyTableProps) {
-  const [isPending, startTransition] = useTransition();
-  const [editingProperty, setEditingProperty] = useState<IProperty | null>(
+  properties = [],
+}: CategoryTableProps) {
+  const [editingCategory, setEditingCategory] = useState<ICategory | null>(
+    null,
+  );
+  const [deletingCategory, setDeletingCategory] = useState<ICategory | null>(
     null,
   );
 
-  const handleDelete = (id: string, title: string) => {
-    const confirmed = window.confirm(
-      `Are you sure you want to delete "${title}"?`,
-    );
+  const hasProperties = properties && properties.length > 0;
 
-    if (!confirmed) return;
-
-    startTransition(async () => {
-      const success = await removeProperty(id);
-      if (success) {
-        onPropertyChange?.();
-      } else {
-        console.error("Failed to delete property");
-      }
-    });
+  const handleDeleteClick = (category: ICategory) => {
+    setDeletingCategory(category);
   };
 
-  if (!properties.length) {
+  const handleDeleteClose = () => {
+    setDeletingCategory(null);
+  };
+
+  if (categories.length === 0) {
     return (
       <div className="rounded-lg border p-8 text-center text-muted-foreground">
-        No properties found. Create your first property!
+        No categories found. Create your first category!
       </div>
     );
   }
 
   return (
     <>
-      <div className="overflow-hidden rounded-lg border">
+      <div className="rounded-lg border">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-muted">
-              <tr className="border-b">
-                <th className="px-4 py-3 text-left text-sm font-medium">
-                  Image
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-medium">
-                  Title
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-medium">
-                  Price
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-medium">
-                  Location
-                </th>
-                <th className="px-4 py-3 text-center text-sm font-medium">
-                  Beds
-                </th>
-                <th className="px-4 py-3 text-center text-sm font-medium">
-                  Baths
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-medium">
-                  Category
-                </th>
-                <th className="px-4 py-3 text-center text-sm font-medium">
-                  Status
-                </th>
+            <thead>
+              <tr className="border-b bg-muted/50">
+                <th className="px-4 py-3 text-left text-sm font-medium">Name</th>
+                {hasProperties && (
+                  <th className="px-4 py-3 text-left text-sm font-medium">
+                    Properties
+                  </th>
+                )}
                 <th className="px-4 py-3 text-right text-sm font-medium">
                   Actions
                 </th>
               </tr>
             </thead>
-
             <tbody>
-              {properties.map((property) => (
-                <tr
-                  key={property.id}
-                  className="border-b last:border-0 hover:bg-muted/50">
-                  <td className="px-4 py-3">
-                    {property.image ? (
-                      <div className="relative h-12 w-12 overflow-hidden rounded-md">
-                        <Image
-                          src={property.image}
-                          alt={property.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    ) : (
-                      <div className="h-12 w-12 rounded-md bg-muted flex items-center justify-center">
-                        <span className="text-xs text-muted-foreground">
-                          No img
-                        </span>
-                      </div>
-                    )}
-                  </td>
-
-                  <td className="px-4 py-3">
-                    <div className="font-medium">{property.title}</div>
-                    <div className="text-xs text-muted-foreground line-clamp-1">
-                      {property.description}
-                    </div>
-                  </td>
-
-                  <td className="px-4 py-3 font-semibold">
-                    ${property.price.toLocaleString()}
-                    <div className="text-xs font-normal text-muted-foreground">
-                      /month
-                    </div>
-                  </td>
-
-                  <td className="px-4 py-3">
-                    <div>{property.address}</div>
-                    <div className="text-xs text-muted-foreground">
-                      {property.city}
-                    </div>
-                  </td>
-
-                  <td className="px-4 py-3 text-center">{property.bedrooms}</td>
-                  <td className="px-4 py-3 text-center">
-                    {property.bathrooms}
-                  </td>
-
-                  <td className="px-4 py-3">
-                    <span className="rounded-full bg-primary/10 px-2 py-1 text-xs">
-                      {property.category?.name || "Uncategorized"}
-                    </span>
-                  </td>
-
-                  <td className="px-4 py-3 text-center">
-                    <span
-                      className={`rounded-full px-2 py-1 text-xs ${
-                        property.available
-                          ? "bg-green-100 text-green-700"
-                          : "bg-red-100 text-red-700"
-                      }`}>
-                      {property.available ? "Available" : "Not Available"}
-                    </span>
-                  </td>
-
+              {categories.map((category) => (
+                <tr key={category.id} className="border-b hover:bg-muted/50">
+                  <td className="px-4 py-3 text-sm">{category.name}</td>
+                  {hasProperties && (
+                    <td className="px-4 py-3 text-sm">
+                      {category._count?.properties || 0}
+                    </td>
+                  )}
                   <td className="px-4 py-3 text-right">
-                    <div className="flex justify-end gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setEditingProperty(property)}
-                        disabled={isPending}
-                        className="rounded-md border px-3 py-1.5 text-sm hover:bg-muted disabled:opacity-50">
-                        Edit
-                      </button>
-
-                      <button
-                        type="button"
-                        disabled={isPending}
-                        onClick={() =>
-                          handleDelete(property.id, property.title)
-                        }
-                        className="rounded-md bg-destructive px-3 py-1.5 text-sm text-destructive-foreground hover:bg-destructive/90 disabled:opacity-50">
-                        Delete
-                      </button>
-                    </div>
+                    <button
+                      onClick={() => setEditingCategory(category)}
+                      className="mr-2 rounded-md p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
+                    >
+                      <Pencil className="size-4" />
+                    </button>
+                    <button
+                      onClick={() => handleDeleteClick(category)}
+                      className="rounded-md p-1 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                    >
+                      <Trash2 className="size-4" />
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -181,32 +92,26 @@ export default function PropertyTable({
       </div>
 
       {/* Edit Modal */}
-      {editingProperty && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
-          onMouseDown={(e) => {
-            if (e.target === e.currentTarget) {
-              setEditingProperty(null);
-            }
-          }}>
-          <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg bg-background p-6 shadow-xl">
-            <div className="mb-5">
-              <h2 className="text-lg font-semibold">Edit Property</h2>
-              <p className="text-sm text-muted-foreground">
-                Update property details
-              </p>
-            </div>
-
-            <PropertyForm
-              property={editingProperty}
-              categories={categories}
-              onSuccess={() => {
-                setEditingProperty(null);
-                onPropertyChange?.();
-              }}
+      {editingCategory && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="w-full max-w-md rounded-lg bg-background p-6 shadow-lg">
+            <h2 className="mb-4 text-lg font-semibold">Edit Category</h2>
+            <CategoryForm
+              category={editingCategory}
+              onSuccess={() => setEditingCategory(null)}
             />
           </div>
         </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {deletingCategory && (
+        <DeleteConfirmationModal
+          categoryId={deletingCategory.id}
+          categoryName={deletingCategory.name}
+          isOpen={!!deletingCategory}
+          onClose={handleDeleteClose}
+        />
       )}
     </>
   );

@@ -7,7 +7,7 @@ import { IRentalRequest } from "@/lib/type";
 export const getRentalRequest = async (
   id: string,
 ): Promise<IRentalRequest | null> => {
-  const result = await api<{ rental: IRentalRequest }>(
+  const result = await api<IRentalRequest>(
     `/rentals/${id}`,
     {
       auth: true,
@@ -15,5 +15,5 @@ export const getRentalRequest = async (
     },
   );
 
-  return result.ok ? result.data.rental : null;
+  return result.ok ? result.data : null;
 };

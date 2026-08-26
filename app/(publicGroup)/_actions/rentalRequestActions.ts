@@ -1,19 +1,16 @@
+// app/(publicGroup)/_actions/rentalRequestActions.ts
 "use server";
 
 import { revalidatePath } from "next/cache";
-
 import { api } from "@/lib/api";
-import { IFormState, IRentalRequest } from "@/lib/type";
+import type { IRentalRequest, IFormState } from "@/lib/type";
 
+// This is the action for creating rental requests (used by tenants)
 export const createRentalRequestAction = async (
   prevState: IFormState,
   formData: FormData,
 ): Promise<IFormState> => {
-  console.log("=== RENTAL ACTION ===");
-
-  for (const [key, value] of formData.entries()) {
-    console.log(key, value);
-  }
+  console.log("=== CREATING RENTAL REQUEST ===");
 
   const propertyId = formData.get("propertyId");
   const moveInDate = formData.get("moveInDate");
@@ -55,63 +52,15 @@ export const createRentalRequestAction = async (
   if (!result.ok) {
     return {
       success: false,
-      message: result.message,
+      message: result.message || "Failed to submit rental request",
     };
   }
 
   revalidatePath(`/properties/${propertyId}`);
-  revalidatePath("/dashboard");
+  revalidatePath("/dashboard/my-requests");
 
   return {
     success: true,
     message: "Rental request submitted successfully.",
-  };
-};
-
-export const updateRentalRequestAction = async (
-  prevState: IFormState,
-  formData: FormData,
-): Promise<IFormState> => {
-  const requestId = formData.get("requestId");
-  const status = formData.get("status");
-
-  if (!requestId) {
-    return {
-      success: false,
-      message: "Rental request ID is required.",
-    };
-  }
-
-  if (status !== "APPROVED" && status !== "REJECTED") {
-    return {
-      success: false,
-      message: "Invalid rental request status.",
-    };
-  }
-
-  const result = await api<IRentalRequest>(`/rentals/${requestId}`, {
-    method: "PUT",
-    auth: true,
-    body: JSON.stringify({
-      status,
-    }),
-  });
-
-  if (!result.ok) {
-    return {
-      success: false,
-      message: result.message,
-    };
-  }
-
-  revalidatePath("/dashboard");
-  revalidatePath("/rentals");
-
-  return {
-    success: true,
-    message:
-      status === "APPROVED"
-        ? "Rental request approved."
-        : "Rental request rejected.",
   };
 };

@@ -54,22 +54,6 @@ export interface IProperty {
   owner?: IUser;
 }
 
-export type IRentalRequest = {
-  id: string;
-  propertyId: string;
-  renterId: string;
-  moveInDate: string;
-  duration: number | null;
-  message: string | null;
-  status: IRentalRequestStatus;
-  createdAt: string;
-  updatedAt: string;
-
-  property?: IProperty;
-  renter?: IUser;
-  payment?: IPayment | null;
-};
-
 export type IPayment = {
   id: string;
   transactionId: string;
@@ -115,4 +99,34 @@ export interface ICategory {
   _count?: {
     properties: number;
   };
+}
+export interface IRentalRequest {
+  id: string;
+  propertyId: string;
+  renterId: string;
+  moveInDate: string | Date;
+  duration: number | null;
+  message: string | null;
+  status: IRentalRequestStatus; // Use the full type
+  createdAt: string | Date;
+  updatedAt: string | Date;
+  property?: {
+    id: string;
+    title: string;
+    address: string;
+    city: string;
+    price: number;
+    image?: string;
+    owner?: {
+      id: string;
+      name: string;
+      email: string;
+    };
+  };
+  renter?: {
+    id: string;
+    name: string;
+    email: string;
+  };
+  payment?: IPayment;
 }

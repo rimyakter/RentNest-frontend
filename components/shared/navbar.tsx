@@ -27,7 +27,7 @@ export async function Navbar() {
           {user?.role === "TENANT" && (
             <NavLink href="/dashboard/payments">Payments</NavLink>
           )}
-          {user?.role === "TENANT" && <NavLink href="/users/me">Profile</NavLink>}
+        
           {user?.role === "LANDLORD" && (
             <NavLink href="/landlord/properties">Properties</NavLink>
           )}
@@ -35,8 +35,14 @@ export async function Navbar() {
             <>
               <NavLink href="/admin/users">Users</NavLink>
               <NavLink href="/admin/categories">Categories</NavLink>
-              
             </>
+          )}
+          {user?.role === "TENANT" && (
+            <NavLink href="/dashboard/my-requests">My Rental Requests</NavLink>
+          )}
+
+          {(user?.role === "LANDLORD" || user?.role === "ADMIN") && (
+            <NavLink href="/dashboard/rentals">Manage Rental Requests</NavLink>
           )}
         </div>
 

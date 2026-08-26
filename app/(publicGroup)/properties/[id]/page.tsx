@@ -184,7 +184,7 @@ export default async function PropertyPage({
                 Sign in to request this property.
               </p>
 
-              <Link href="/auth/login">
+              <Link href="/login">
                 <Button className="press">Sign in</Button>
               </Link>
             </div>

@@ -1,3 +1,4 @@
+// app/(publicGroup)/_components/RentalRequestForm.tsx
 "use client";
 
 import { useActionState } from "react";
@@ -5,9 +6,8 @@ import { useActionState } from "react";
 import type { IProperty } from "@/lib/type";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { createRentalRequestAction } from "../_actions/rentalRequestActions";
-
-
+// Add this import - make sure the path is correct
+import { createRentalRequestAction } from "@/app/(publicGroup)/_actions/rentalRequestActions";
 
 const initialState = {
   success: false,

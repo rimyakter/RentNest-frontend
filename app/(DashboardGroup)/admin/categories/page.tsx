@@ -1,7 +1,9 @@
+// app/(DashboardGroup)/admin/categories/page.tsx
 import { getCategories } from "@/service/getCategories";
 import CategoryForm from "../../_components/CategoryForm";
 import CategoryTable from "../../_components/CategoryTable";
 
+// Remove the incomplete 'type' line
 export default async function CategoriesPage() {
   const categories = await getCategories();
 

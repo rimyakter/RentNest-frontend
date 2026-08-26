@@ -1,7 +1,9 @@
+// app/(DashboardGroup)/_components/CategoryForm.tsx
 "use client";
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import type { ICategory } from "@/lib/type";
 import { addCategory } from "../_actions/addCategoryActions";
 import { editCategory } from "../_actions/editCategoryActions";
@@ -27,27 +29,48 @@ export default function CategoryForm({
 
     const trimmedName = name.trim();
 
-    if (!trimmedName) return;
+    if (!trimmedName) {
+      toast.error("Category name is required");
+      return;
+    }
 
     startTransition(async () => {
-      const result = isEditing
-        ? await editCategory(category!.id, trimmedName)
-        : await addCategory(trimmedName);
+      try {
+        const result = isEditing
+          ? await editCategory(category!.id, trimmedName)
+          : await addCategory(trimmedName);
 
-      if (!result) {
-        console.error("Category update failed");
-        return;
-      }
+        if (!result.success) {
+          toast.error(
+            result.message ||
+              (isEditing
+                ? "Failed to update category"
+                : "Failed to add category"),
+          );
+          return;
+        }
 
-      // Refresh Server Component data
-      router.refresh();
+        toast.success(
+          result.message ||
+            (isEditing
+              ? "Category updated successfully"
+              : "Category added successfully"),
+        );
 
-      // Close modal
-      onSuccess?.();
+        // Refresh Server Component data
+        router.refresh();
 
-      // Only clear input when adding
-      if (!isEditing) {
-        setName("");
+        // Close modal
+        onSuccess?.();
+
+        // Only clear input when adding
+        if (!isEditing) {
+          setName("");
+        }
+      } catch (error) {
+        toast.error(
+          error instanceof Error ? error.message : "An error occurred",
+        );
       }
     });
   };
@@ -66,7 +89,7 @@ export default function CategoryForm({
           onChange={(e) => setName(e.target.value)}
           placeholder="e.g. Apartment"
           disabled={isPending}
-          className="w-full rounded-md border px-3 py-2 outline-none focus:ring-2"
+          className="w-full rounded-md border px-3 py-2 outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
 
@@ -75,14 +98,14 @@ export default function CategoryForm({
           type="button"
           onClick={onSuccess}
           disabled={isPending}
-          className="rounded-md border px-4 py-2 text-sm">
+          className="rounded-md border px-4 py-2 text-sm hover:bg-muted">
           Cancel
         </button>
 
         <button
           type="submit"
           disabled={isPending}
-          className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground disabled:opacity-50">
+          className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary/90 disabled:opacity-50">
           {isPending ? "Saving..." : isEditing ? "Update" : "Add Category"}
         </button>
       </div>
