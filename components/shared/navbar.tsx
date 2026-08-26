@@ -24,9 +24,6 @@ export async function Navbar() {
 
         <div className="flex items-center gap-0.5">
           {user && <NavLink href="/dashboard">Dashboard</NavLink>}
-          {user?.role === "TENANT" && (
-            <NavLink href="/dashboard/payments">Payments</NavLink>
-          )}
 
           {user?.role === "LANDLORD" && (
             <NavLink href="/landlord/properties">Properties</NavLink>

@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // app/dashboard/payments/page.tsx
 import { notFound } from "next/navigation";
 import { getMe } from "@/service/getMe";
 import { getMyPayments } from "@/service/paymentActions";
 import PaymentsList from "../../_components/PaymentsList";
-
 
 export default async function PaymentsPage() {
   const user = await getMe();
@@ -28,7 +28,7 @@ export default async function PaymentsPage() {
     );
   }
 
-  let payments = [];
+  let payments: any[] = [];
   let error = null;
 
   try {

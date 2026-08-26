@@ -139,40 +139,6 @@ export default async function PropertyPage({
         </CardContent>
       </Card>
 
-      {/* Reviews */}
-      {property.reviews && property.reviews.length > 0 && (
-        <Card
-          className="rise mt-6 shadow-sm"
-          style={{ animationDelay: "140ms" }}>
-          <CardContent className="space-y-5">
-            <h2 className="text-xl font-semibold">Reviews</h2>
-
-            <div className="space-y-5">
-              {property.reviews.map((review) => (
-                <div
-                  key={review.id}
-                  className="border-b pb-5 last:border-0 last:pb-0">
-                  <div className="flex items-center justify-between">
-                    <p className="font-medium">
-                      {review.renter?.name ?? "Tenant"}
-                    </p>
-
-                    <div className="flex items-center gap-1">
-                      <Star className="size-4 fill-current" />
-                      <span className="text-sm">{review.rating}/5</span>
-                    </div>
-                  </div>
-
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {review.comment}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
       {/* Rental request */}
       <Card
         className="rise mt-10 shadow-sm"
