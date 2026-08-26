@@ -17,7 +17,7 @@ export default async function DashboardPage() {
   ];
 
   return (
-    <main className="mx-auto max-w-lg px-4 py-12">
+    <main className="w-300 mx-auto px-4 py-12">
       <div className="rise space-y-1">
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground">Your account at a glance.</p>
@@ -61,36 +61,25 @@ export default async function DashboardPage() {
 
       {user?.role === "TENANT" && (
         <section className="mt-10">
-          <h2 className="rise text-sm font-medium text-muted-foreground" style={{ animationDelay: "120ms" }}>
-            Your bookings
-          </h2>
           <div className="mt-4">
-            {/* <BookingList bookings={bookings} payable /> */}
-            <p>Hello Tenant!</p>
+            <p>Hello Tenant! Welcome to your dashboard.</p>
           </div>
         </section>
       )}
-      
+
       {user?.role === "LANDLORD" && (
         <section className="mt-10">
-          <h2 className="rise text-sm font-medium text-muted-foreground" style={{ animationDelay: "120ms" }}>
-            Your bookings
-          </h2>
           <div className="mt-4">
             {/* <BookingList bookings={bookings} payable /> */}
-            <p>Hello Landlord!</p>
+            <p>Hello Landlord! Welcome to your dashboard.</p>
           </div>
         </section>
       )}
-      
+
       {user?.role === "ADMIN" && (
         <section className="mt-10">
-          <h2 className="rise text-sm font-medium text-muted-foreground" style={{ animationDelay: "120ms" }}>
-            Your bookings
-          </h2>
           <div className="mt-4">
-            {/* <BookingList bookings={bookings} payable /> */}
-            <p>Hello Admin!</p>
+            <p>Hello Admin! Welcome to your dashboard.</p>
           </div>
         </section>
       )}

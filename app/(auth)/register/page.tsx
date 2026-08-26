@@ -1,6 +1,6 @@
 import Link from "next/link";
 import RegisterForm from "../_components/RegisterForm";
-import { Car } from "lucide-react";
+import { House } from "lucide-react";
 
 export default function RegisterPage() {
   return (
@@ -8,7 +8,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-sm">
         <div className="rise space-y-3 text-center">
           <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-primary/10">
-            <Car className="size-6 text-primary" />
+            <House className="size-6 text-primary" />
           </div>
           <h1 className="text-3xl font-bold tracking-tight">Create an account</h1>
           <p className="text-sm text-muted-foreground">Start renting in under a minute.</p>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CreditCard, TableProperties } from "lucide-react";
+import { CreditCard, House } from "lucide-react";
 import { getMe } from "@/service/getMe";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,7 @@ export async function Navbar() {
           href="/"
           className="press flex items-center gap-2 pr-2 font-semibold tracking-tight">
           <div className="flex size-7 items-center justify-center rounded-lg bg-primary/10">
-            <TableProperties className="size-4 text-primary" />
+            <House className="size-4 text-primary" />
           </div>
           <span className="hidden sm:inline">RentNext</span>
         </Link>
