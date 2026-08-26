@@ -1,11 +1,5 @@
 export type IRole = "ADMIN" | "LANDLORD" | "TENANT";
 
-export type IPaymentMethod = "CARD" | "MOBILE_BANKING" | "BANK_TRANSFER";
-
-export type IPaymentProvider = "STRIPE" | "SSLCOMMERZ";
-
-export type IPaymentStatus = "PENDING" | "COMPLETED" | "FAILED";
-
 export type IRentalRequestStatus =
   | "PENDING"
   | "APPROVED"
@@ -53,23 +47,6 @@ export interface IProperty {
   category?: ICategory;
   owner?: IUser;
 }
-
-export type IPayment = {
-  id: string;
-  transactionId: string;
-  rentalRequestId: string;
-  renterId: string;
-  amount: number;
-  method: IPaymentMethod;
-  provider: IPaymentProvider;
-  status: IPaymentStatus;
-  paidAt: string | null;
-  createdAt: string;
-  updatedAt: string;
-
-  rentalRequest?: IRentalRequest;
-  renter?: IUser;
-};
 
 export type IReview = {
   id: string;
@@ -129,4 +106,34 @@ export interface IRentalRequest {
     email: string;
   };
   payment?: IPayment;
+}
+
+export type IPaymentMethod = "CARD" | "MOBILE_BANKING" | "BANK_TRANSFER";
+export type IPaymentProvider = "STRIPE" | "SSLCOMMERZ";
+export type IPaymentStatus = "PENDING" | "COMPLETED" | "FAILED";
+
+export interface IPayment {
+  id: string;
+  transactionId: string;
+  rentalRequestId: string;
+  renterId: string;
+  amount: number;
+  method: IPaymentMethod;
+  provider: IPaymentProvider;
+  status: IPaymentStatus;
+  paidAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+  rentalRequest?: {
+    id: string;
+    property: {
+      id: string;
+      title: string;
+      price: number;
+    };
+  };
+}
+
+export interface ICheckoutResponse {
+  checkoutUrl: string;
 }

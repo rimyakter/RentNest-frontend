@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TableProperties } from "lucide-react";
+import { CreditCard, TableProperties } from "lucide-react";
 import { getMe } from "@/service/getMe";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -27,7 +27,7 @@ export async function Navbar() {
           {user?.role === "TENANT" && (
             <NavLink href="/dashboard/payments">Payments</NavLink>
           )}
-        
+
           {user?.role === "LANDLORD" && (
             <NavLink href="/landlord/properties">Properties</NavLink>
           )}
@@ -43,6 +43,14 @@ export async function Navbar() {
 
           {(user?.role === "LANDLORD" || user?.role === "ADMIN") && (
             <NavLink href="/dashboard/rentals">Manage Rental Requests</NavLink>
+          )}
+          {user?.role === "TENANT" && (
+            <Link
+              href="/dashboard/payments"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-foreground">
+              <CreditCard className="size-4" />
+              My Payments
+            </Link>
           )}
         </div>
 

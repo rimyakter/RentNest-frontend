@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { IRentalRequest } from "@/lib/type";
+import PaymentButton from "./PaymentButton"; // Import PaymentButton
 
 interface MyRentalRequestsListProps {
   requests: IRentalRequest[];
@@ -21,9 +22,9 @@ interface MyRentalRequestsListProps {
 const getStatusBadgeVariant = (status: string) => {
   switch (status) {
     case "PENDING":
-      return "secondary"; // Changed from "default" to "secondary"
+      return "secondary";
     case "APPROVED":
-      return "default"; // Changed from "success" to "default" (or you can use "outline" with custom styling)
+      return "default";
     case "REJECTED":
       return "destructive";
     case "ACTIVE":
@@ -97,8 +98,8 @@ export default function MyRentalRequestsList({
         <Card key={request.id} className="hover:shadow-lg transition-shadow">
           <CardHeader>
             <div className="flex items-start justify-between">
-              <div className="space-y-1">
-                <CardTitle className="text-lg">
+              <div className="space-y-1 flex-1">
+                <CardTitle className="text-lg line-clamp-1">
                   {request.property?.title || "Unknown Property"}
                 </CardTitle>
                 <CardDescription className="flex items-center gap-1">
@@ -106,7 +107,7 @@ export default function MyRentalRequestsList({
                   {request.property?.address || "Address not available"}
                 </CardDescription>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 ml-2">
                 <div
                   className={`size-2 rounded-full ${getStatusColor(request.status)}`}
                 />
@@ -132,12 +133,12 @@ export default function MyRentalRequestsList({
             {request.duration && (
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-muted-foreground">Duration:</span>
-                <span>{request.duration} months</span>
+                <span className="font-medium">{request.duration} months</span>
               </div>
             )}
 
             {request.message && (
-              <div className="mt-3 rounded-md bg-muted p-3">
+              <div className="mt-2 rounded-md bg-muted p-3">
                 <p className="text-sm text-muted-foreground line-clamp-2">
                   {request.message}
                 </p>
@@ -156,6 +157,27 @@ export default function MyRentalRequestsList({
                 </span>
               </div>
             )}
+
+            {/* ✅ Payment Button Section */}
+            <div className="mt-4 pt-4 border-t">
+              {request.status === "APPROVED" ? (
+                <PaymentButton
+                  rentalRequestId={request.id}
+                  amount={request.property?.price || 0}
+                  disabled={request.payment?.status === "COMPLETED"}
+                />
+              ) : (
+                <p className="text-xs text-muted-foreground text-center">
+                  {request.status === "PENDING"
+                    ? "⏳ Waiting for landlord approval"
+                    : request.status === "ACTIVE"
+                      ? "✅ Rental is active"
+                      : request.status === "COMPLETED"
+                        ? "✅ Rental completed"
+                        : "❌ Request rejected"}
+                </p>
+              )}
+            </div>
           </CardContent>
         </Card>
       ))}
