@@ -249,50 +249,6 @@ Production: https://your-api-url.com/api/v1
 
 ---
 
-## Review APIs
-
-### Get Property Reviews
-
-| Property           | Value                                       |
-| ------------------ | ------------------------------------------- |
-| **Endpoint**       | `GET /reviews/property/:propertyId`         |
-| **Action/Service** | `service/getReviews.ts`                     |
-| **UI Location**    | `/properties/[id]`                          |
-| **Response**       | `{ success: boolean, data: { reviews[] } }` |
-
-### Create Review
-
-| Property           | Value                                    |
-| ------------------ | ---------------------------------------- |
-| **Endpoint**       | `POST /reviews`                          |
-| **Action/Service** | `reviewActions.ts → createReviewAction`  |
-| **UI Location**    | `/properties/[id]` (Review Form)         |
-| **Auth Required**  | Yes (Tenant)                             |
-| **Request Body**   | `{ propertyId, rating, comment }`        |
-| **Response**       | `{ success: boolean, data: { review } }` |
-
-### Update Review
-
-| Property           | Value                                    |
-| ------------------ | ---------------------------------------- |
-| **Endpoint**       | `PATCH /reviews/:id`                     |
-| **Action/Service** | `reviewActions.ts → updateReviewAction`  |
-| **UI Location**    | `/dashboard/reviews`                     |
-| **Auth Required**  | Yes (Review owner)                       |
-| **Request Body**   | `{ rating?, comment? }`                  |
-| **Response**       | `{ success: boolean, data: { review } }` |
-
-### Delete Review
-
-| Property           | Value                                   |
-| ------------------ | --------------------------------------- |
-| **Endpoint**       | `DELETE /reviews/:id`                   |
-| **Action/Service** | `reviewActions.ts → deleteReviewAction` |
-| **UI Location**    | `/dashboard/reviews`                    |
-| **Auth Required**  | Yes (Review owner/Admin)                |
-| **Response**       | `{ success: boolean, message: string }` |
-
----
 
 ## Admin APIs
 
