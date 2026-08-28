@@ -7,7 +7,7 @@ This document outlines all API endpoints integrated into the RentNest frontend a
 ## Base URL
 
 Development: http://localhost:3000
-Production: https://your-api-url.com/api/v1
+Production: https://rent-nest-frontend-blue.vercel.app
 
 ---
 
@@ -248,7 +248,6 @@ Production: https://your-api-url.com/api/v1
 | **Response**       | `{ received: true }`           |
 
 ---
-
 
 ## Admin APIs
 
