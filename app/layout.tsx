@@ -7,12 +7,12 @@ import { Navbar } from "@/components/shared/navbar";
 import { Footer } from "@/components/shared/footer";
 import { ThemeProvider } from "next-themes";
 
-
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Car Rental",
-  description: "Rent a car by the day.",
+  title: "RentNest",
+  description:
+    "Rent a Property with Ease and Confidence - RentNest is your trusted platform for property rentals",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
